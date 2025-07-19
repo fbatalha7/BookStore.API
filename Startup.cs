@@ -12,6 +12,7 @@ namespace BookStore.API
 
             services.AddSwaggerConfiguration();
             services.DependecyInjections();
+            services.AddAutoMapperConfiguration();
         }
 
         public void Configure(IApplicationBuilder app)
