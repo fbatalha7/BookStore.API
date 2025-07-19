@@ -1,12 +1,11 @@
 ﻿namespace BookStore.Domain.Entities
 {
-    public class Book
+    public class Book(string title, string author, int yearPublished, decimal price)
     {
-        public Guid Id { get; private set; }
-        public string Titulo { get; private set; }
-        public string Autor { get; private set; }
-        public int AnoPublicacao { get; private set; }
-        public decimal Preco { get; private set; }
-        public string Sinopse { get; private set; }
+        public int Id { get; set; }
+        public string Title { get; set; } = title;
+        public string Author { get; set; } = author;
+        public int YearPublished { get; set; } = yearPublished;
+        public decimal Price { get; set; } = price;
     }
 }

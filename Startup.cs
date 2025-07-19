@@ -1,8 +1,10 @@
 ﻿using BookStore.API.Configurations;
+using BookStore.Infrastructure.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.API
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
         public void ConfigureServices(IServiceCollection services)
         {
@@ -11,10 +13,18 @@ namespace BookStore.API
             services.AddEndpointsApiExplorer();
 
             services.AddSwaggerConfiguration();
+
+            services.DependecyInjections();
+
+            services.AddAutoMapperConfiguration();
+
+            AddInfraConfiguration(services);
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.AddMigrations();
+
             app.UseDeveloperExceptionPage();
 
             app.UseSwaggerConfiguration();
@@ -30,5 +40,9 @@ namespace BookStore.API
                 endpoints.MapControllers();
             });
         }
+
+        private void AddInfraConfiguration(IServiceCollection services)
+            => services.AddDbContext<AppDbContext>(options
+                => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
     }
 }
