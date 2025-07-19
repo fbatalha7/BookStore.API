@@ -1,3 +1,4 @@
+using BookStore.API.Configurations;
 
 namespace BookStore.API
 {
@@ -10,6 +11,9 @@ namespace BookStore.API
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
 
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerConfiguration();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -20,8 +24,15 @@ namespace BookStore.API
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStore API V1");
+                c.RoutePrefix = "api"; 
+            });
 
             app.Run();
         }
