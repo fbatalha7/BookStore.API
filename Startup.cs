@@ -11,6 +11,7 @@ namespace BookStore.API
             services.AddEndpointsApiExplorer();
 
             services.AddSwaggerConfiguration();
+            services.DependecyInjections();
         }
 
         public void Configure(IApplicationBuilder app)
