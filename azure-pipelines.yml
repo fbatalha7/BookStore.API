@@ -15,7 +15,7 @@ stages:
   - job: RunTests
     displayName: Run Tests
     pool:
-      vmImage: ubuntu-latest
+      vmImage: defaul
     steps:
     - task: UseDotNet@2
       inputs:
@@ -40,7 +40,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      vmImage: default
     steps:
     - task: Docker@2
       displayName: Build an image
